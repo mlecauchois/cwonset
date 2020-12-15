@@ -4,6 +4,8 @@ layout: home
 
 ---
 
+<img src="assets/banner_cwpeace.jpg" style="width:730px;height:100;">
+
 ## Motivation
 
 ## The data
