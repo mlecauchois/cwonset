@@ -6,9 +6,9 @@ layout: home
 
 ## "Predictions are hard, especially when it's about the future" - Jacques Chirac
 
-Economical crisis, infant mortality, anocracy... When a civil war occurs in a country, retrospectively, one can say "of course this is happening, this country had so many major issues !". But which issues in particular lead to civil wars ? Are some more influential than others ? Are there patterns of certain issues triggering civil wars, some sort of evil secret sauce ? Can we avoid civil wars by predicting it, and acting before the irreparable ? That's what we will try to find out.
-
 This is a hopeful blog: **can we predict when civil wars are bound to occur ?** Such events are profoundly destructive for the citizens of these countries, and their effects are now inevitably globalized. Predicting these conflicts early on presents a major challenge for policymakers in an effort for peace. By successfully doing so, the identification of potential causal mechanisms would unravel a world of possibilities when it comes to understanding and defusing these catastrophes.
+
+Economical crisis, infant mortality, anocracy... When a civil war occurs in a country, retrospectively, one can say "of course this is happening, this country had so many major issues !". But which issues in particular lead to civil wars ? Are some more influential than others ? Are there patterns triggering civil wars, some sort of evil secret sauce ? Can we avoid civil wars by predicting them, and acting before the irreparable ? That's what we will try to find out.
 
 ## What tools for prediction ?
 
@@ -22,7 +22,7 @@ In a similar fashion, our study aims at pushing this comparative analysis furthe
 
 But before diving into the core of this study, let us ask ourselves:
 
-## How much civil wars has the world seen ?
+## Civil what ?
 
 
 {% include num_onset_map.html %}
