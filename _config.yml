@@ -20,7 +20,7 @@
 
 title: Civil wars from beginning to end
 email: your-email@example.com
-description: A datastory on the prediction of conflicts
+description: On the prediction of conflicts
 baseurl: "/cwonset" # the subpath of your site, e.g. /blog
 url: "https://mlecauchois.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb

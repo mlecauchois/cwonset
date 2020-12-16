@@ -9,7 +9,7 @@ $prose-font-size: 24px;
 $h0-mobile: 48px;
 $h0-desktop: 96px;
 
-$h1-size: 40px !default;
+$h1-size: 55px !default;
 $h2-size: 32px !default;
 $h3-size: 24px !default;
 $h4-size: 20px !default;
@@ -29,4 +29,4 @@ $spacer: 8px !default;
 $spacer-1: $spacer !default; // 8px
 $spacer-2: ($spacer * 2) !default; // 16px
 $spacer-3: ($spacer * 4) !default; // 32px
-$spacer-4: ($spacer * 8) !default; // 64px
+$spacer-4: ($spacer * 0) !default; // 64px

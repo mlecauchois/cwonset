@@ -16,7 +16,7 @@ button {
 }
 
 
-body, h1, h2, h3, h4, h5, h6,
+body, h1,h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
     margin: 0;
@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.25em;
 }
 
-h1, .h1 { font-size: $h1-size; }
+h1, .h1 { font-size: $h1-size;}
 h2, .h2 { font-size: $h2-size; }
 h3, .h3 { font-size: $h3-size; }
 h4, .h4 { font-size: $h4-size; }
@@ -63,4 +63,26 @@ a:hover {
   color: $color-primary-link;
   text-decoration: none;
   border-bottom: 1px dotted;
+}
+
+
+.diagonal-box{
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 60s ease infinite;
+  transform: skewY(-8deg);
+  margin-top:-300px;
+}
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

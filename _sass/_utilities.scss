@@ -70,7 +70,15 @@
 .text-accent { color: $color-text-accent; } // used for date in post list and home link
 
 /* Layout utilities */
-.container { max-width: $container-width; }
+.container {
+  margin-top:  $container-width/8;
+  max-width: $container-width; }
+
+  .container2 {
+    transform: skewY(0deg);
+    padding-top:  $container-width/2;
+
+    max-width: $container-width; }
 
 .col-1 { width: (1 / 12 * 100%); }
 .col-2 { width: (2 / 12 * 100%); }
@@ -135,7 +143,7 @@
 
 /* Padding */
 .px-0 { padding-left: 0; padding-right:  0 }
-.py-0 { padding-top: 0;  padding-bottom: 0 }
+.py-0 { padding-top: $spacer-1;  padding-bottom: 0 }
 
 .px-1 { padding-left: $spacer-1; padding-right:  $spacer-1 }
 .py-1 { padding-top: $spacer-1;  padding-bottom: $spacer-1 }
