@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Civil wars from beginning to end
+title: Ending civil wars
 email: your-email@example.com
 description: On the prediction of conflicts
 baseurl: "/cwonset" # the subpath of your site, e.g. /blog
