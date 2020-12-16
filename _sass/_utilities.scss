@@ -72,7 +72,7 @@
 /* Layout utilities */
 .container {
   margin-top:  $container-width/5;
-  max-width: $container-width; }
+  max-width: $container-width/1.1; }
 
   .container2 {
     transform: skewY(0deg);
