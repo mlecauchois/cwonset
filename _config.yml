@@ -20,7 +20,7 @@
 
 title: Ending civil wars
 email: your-email@example.com
-description: On the prediction of conflicts
+description: On the prediction of interstate conflicts
 baseurl: "/cwonset" # the subpath of your site, e.g. /blog
 url: "https://mlecauchois.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
