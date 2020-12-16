@@ -71,12 +71,12 @@
 
 /* Layout utilities */
 .container {
-  margin-top:  $container-width/8;
+  margin-top:  $container-width/5;
   max-width: $container-width; }
 
   .container2 {
     transform: skewY(0deg);
-    padding-top:  $container-width/2;
+    padding-top:  $container-width/1.2;
 
     max-width: $container-width; }
 

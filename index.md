@@ -7,7 +7,7 @@ layout: home
 
 ## Prediction, prediction, prediction
 
-
+This is a hopeful blog: can we predict when civil wars are bound to occur ?
 
 
 
