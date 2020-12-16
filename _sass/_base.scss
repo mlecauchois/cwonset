@@ -68,9 +68,9 @@ a:hover {
 
 .diagonal-box{
   background-color: #861657;
- background-image :linear-gradient(326deg, #861657 0%, #ffa69e 74%);
-	background-size: 400% 400%;
-	animation: gradient 60s ease infinite;
+  background: linear-gradient(45deg,#24AADB , #27DBB1,#FFDC18, #FF3706);
+    background-size: 600% 100%;
+    animation: gradient 60s linear infinite;
   transform: skewY(-8deg);
   margin-top:-300px;
 }
