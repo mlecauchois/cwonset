@@ -25,25 +25,45 @@ But before diving into the core of this study, let us ask ourselves:
 ## Civil what ?
 
 
-{% include num_onset_map.html %}
+{% include map_onset.html %}
 
-
-
-
-
+{% include map_duration.html %}
 
 
 ## Can we predict when they start ?
 
+{% include roc_onset.html %}
 
+{% include tsne_onset.html %}
 
+{% include imp_onset.html %}
+
+{% include map_gdp_onset.html %}
+
+{% include map_illiteracy_onset.html %}
 
 ## Does this prediction change throughout modern history ?
 
+{% include roc_all.html %}
 
+{% include imp_slider.html %}
 
+{% include imp_slider_log.html %}
 
+{% include optics.html %}
 
+{% include kmeans.html %}
+
+{% include tsne_features.html %}
+
+{% include violin.html %}
 
 
 ## Can we predict when they end ?
+{% include roc_end.html %}
+
+{% include tsne_end.html %}
+
+{% include imp_end.html %}
+
+{% include map_gdp_end.html %}
