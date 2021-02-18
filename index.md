@@ -49,19 +49,19 @@ Our mission starts with the choice of tools. As explained earlier, we will use m
 Based on our definition of performance, in this case the *balanced accuracy* (since the classes are imbalanced), the best combination for each model is chosen. We then plot the [Receiver Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html) (ROC) curve, which is a measure of the performance of our model. Essentially what this curve tells us is how robust the model is to a change of decision threshold. Ideally, the model would be able to separate the classes well enough that the amount of false positives increases only for extreme values of the decision threshold. The Area Under the Curve (AUC) summarizes this effect, the larger the better:
 
 
-{% include roc_onset.html %}
+![](assets/roc_onset.png)
 
 For both approaches the model is a good predictor of civil war onset, yielding high AUC scores. Since the ROC is evaluated on a subset of the data that the models have not been trained on, it shows that the systems are able to generalize well enough.
 
 With good predictors at hand, we can start analyzing how they made their prediction. First, we dig into the synapses of the MLP by looking at the degree of activation of the neurons for each datapoint. Since the datapoints lie in a high-dimensional space equal to the number of neurons, reducing their dimensionality is crucial. For that, we use the probabilistic method [t-SNE](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html). To be prudent, we also apply the same treatment to the features and to the activations of an untrained MLP that we use as controls for our conclusions:
 
-{% include tsne_onset.html %}
+![](assets/tsne_onset.png)
 
 For the controls, it looks like the datapoints do not differentiate well from the civil war onsets. This could mean that there is no easy way to group the datapoints without further processing. For the trained MLP, the conclusion is a bit different. It looks like the datapoints of civil war onset tend to group towards the bottom-right, yet it is not very clear. This is still an insight into how the MLP processes the information in order to build nonlinear mappings from feature to prediction.
 
 Now to the fun part: what feature do the models actually leverage ? To do so, we use a technique called [Permutation Importance](https://scikit-learn.org/stable/modules/permutation_importance.html). The idea is that if the values of an unimportant feature for different datapoints are randomly shuffled, the performance of the model should not be too affected. Inversely, if the performance decreases significantly, the feature can be deemed important. The permutation importances are calculated on the test set so as to inform on the features that are important for generalization. In order to understand what all the acronyms of the features mean, you can refer to the [replication material](https://dataverse.harvard.edu/file.xhtml?persistentId=doi:10.7910/DVN/KRKWK8/RYZ15I&version=1.0) of the original paper. We will explain the meaning of the most important ones.
 
-{% include imp_onset.html %}
+![](assets/imp_onset.png)
 
 Two things come to mind: some features are very important for both models, and some features have different importance even if the two models have similar predicting power. This last points highlights that talking about causality when using machine learning techniques is risky, as different models can leverage differently the features for prediction. However, some features are clearly very important for both models, such as primary commodity exports/GDP squared (`sxpsq`), trade as percent of GDP (`trade`), autonomous regions (`autonomy`), rough terrain (`lmtnest`), percentage of illiteracy (`illiteracy`), and military power (`milper`). This analysis corroborates some of the results of the original paper with the new models. However, some features such as the GDP growth (`gdpgrowth`) show very little predictive power on the test set for Random Forest, which goes against what the original paper shows.
 
@@ -86,7 +86,7 @@ It is probably a bit more complicated than that. The first thing that comes to m
 
 We will have to be careful about something already: by separating the data into bins, we reduced the number of samples for each model to train on. With the class imbalance, this could become a challenge. So for training those models, some other parameters were chosen by hand for the randomized grid search. The parameters were chosen mainly to prevent overfitting to singular civil war events since the number of civil war events is reduced in the bins, and therefore they have more singular characteristics. For this the number of parameters for each model was decreased (by adjusting the different parameters). After hand-tuning of those parameters, the models were trained on the separate data bins, with 20 iterations of the randomized grid search. The ROC curves for the trained models for each period are shown in the figure below.
 
-{% include roc_all.html %}
+![](assets/roc_all.png)
 
 Let us analyze the performances of the models. For the first three periods, the performance is very good, we have areas under the curve over 0.9 for both models. The performance of the models on the 7th period and the 8th are quite good, with areas under the curve around and over 0.8. However, for the other periods, the neural network seems to be less performant, and for some of them, also the Random Forest is not performant. Generally, the Random Forest model does a better job on all the periods. The periods where the models are less performant, especially 1965 to 1980 and 1970 to 1985, could have a really small proportion of civil war onsets or the civil war onsets in these periods could have very different features, and are therefore difficult to predict. We will have to be careful about the analysis of the feature importances in those periods, since the models are poor predictors.
 
@@ -116,13 +116,13 @@ In order to classify the data, we have tried several clustering algorithms, whic
 
 To compare both methods and to choose the hyperparameters for each method, we use the silhouette score. To quote [Wikipedia](https://en.wikipedia.org/wiki/Silhouette_(clustering)), the silhouette value is a measure of how similar an object is to its own cluster (cohesion) compared to other clusters (separation). The silhouette ranges from −1 to +1, where a high value indicates that the object is well matched to its own cluster and poorly matched to neighboring clusters...  For the evaluation of the OPTICS algorithm, we also plotted the number of outliers: we do not want too much outliers, or the clustering has no use.
 
-{% include optics.html %}
+![](assets/optics.png)
 
 Firstly, we see that the clustering is not very good, the highest silhouette scores are around 0.1, and the number of outliers varies from 40 to 80 for acceptable silhouette scores. On a dataset of 116 samples, this is too much outliers. The high number of outliers also indicates that the data is not easily separable into clusters. The bad clustering is also due to our small number of samples, where it is hard to find patterns. However, if we have to choose a minimum number of samples, 13 seems to correspond to a high silhouette score with a smaller number of outliers.
 
 So the next method in line is K-Means. For K-Means, we took the default L2 distance metric. We have to choose the number of clusters for this method. For this again, we use the silhouette score, and we also use the sum of squared errors (SSE), evaluating the distance of each point to its cluster center, and summing over all points and all clusters. The smaller the SSE, the better. However, the SSE is the smallest with the number of clusters equal to the number of points, which is not a good clustering. Therefore, the method is to search for the "elbow" in the descending SSE curve, where the curves becomes flatter.
 
-{% include kmeans.html %}
+![](assets/kmeans.png)
 
 Here the results seem better, with silhouette scores of 0.12-0.15. So we decided to use K-Means as our final clustering algorithm.
 
@@ -133,11 +133,11 @@ So, are there tangible results ? Can we really find “evil secret sauces” (e.
 
 We get a good overview of our clustered dataset by using t-SNE. We can see by looking at the following graph that the clustering result is mixed. We can see that the points are consistent with the clustering, but the  clusters do not appear clearly separated on the graph. This could also be due to the fact that t-SNE does not use the same methods as K-Means for clustering and this visualization is just an indication of the results.
 
- {% include tsne_features.html %}
+![](assets/tsne_features.png)
 
 The next big question, our initial interrogation, is the distribution of clusters across time. For this we plotted the clusters in violin pots, with respect to the time of the civil war onset.
 
-{% include violin.html %}
+![](assets/violin.png)
 
 We can see that the clusters actually range over quite some periods. For some clusters, they are quite narrow in the time range. This would indeed mean that we found some civil war onsets which had similar causes due to their period of onset. However, all clusters are not clearly timely separated. This could be due to various things. Firstly, we found similar causes in the civil war onsets, and these causes could spread over a wide range of years, or these causes could have no relation with temporality. Therefore, the clusters would encompass some causes inherent to civil wars over all years. This would be very interesting, since these causes could be indicators for future civil wars. It could also be that the data is not easily clusterable, and the clusters found are not very reliable.
 
@@ -149,17 +149,17 @@ We are starting to get insights into civil war onsets. But say our system fails 
 
 After performing our random search and found good candidates for our models, we plot the ROC curves:
 
-{% include roc_end.html %}
+![](assets/roc_end.png)
 
 Surprisingly, despite the low amount of data, the Random Forest model performs well. However, similarly to what was mentioned above, the MLP seems to be performing much worse than the Random Forest. Still, the model is better than chance. It is probable that the very low amount of data and the high class imbalance is causing these results. Let us take a look at the MLP and plot the activations to better understand what is happening:
 
-{% include tsne_end.html %}
+![](assets/tsne_end.png)
 
 We see that for the trained MLP, the activations cluster well compared to the controls. However, we can see that the datapoints still overlap, causing the performance of the model to decrease. Even if the MLP managed to extract a nonlinear mapping from the data, it might be that the amount of data was too scarce for the MLP to make that mapping more robust.
 
 Since our Random Forest model has high predictive power, can expect to learn something from the permutation importance scores:
 
-{% include imp_end.html %}
+![](assets/imp_end.png)
 
 Before overinterpreting the importance scores of the MLP, let's not forget that the MLP had low predictive power. Still, we see that the permutation importance is high for economical factors: primary commodity exports/GDP (`sxpnew`) and it's squared variant (`sxpsq`). Note that here, the feature `sxpnew` has been brought back to life: the reason being that these economical factors are the best predictors for the end of a civil war. Are exports stopping the civil war ? Let's not jump to conclusions. In fact, because of how the dataset is made (in bins of one year), it is difficult to know what is the order of causality here: is the ending of the war due to large numbers of primary commodity exports/GDP, boosting the economy and assuaging the minds leading to the end of the conflict, or are the good numbers a result of the end of the war, since the economy can now thrive again. We cannot know this from this dataset, but looking at smaller time bins (such as months) would help us in understanding the ending of conflicts better.
 
