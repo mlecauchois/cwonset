@@ -133,7 +133,7 @@ So, are there tangible results ? Can we really find “evil secret sauces” (e.
 
 We get a good overview of our clustered dataset by using t-SNE. We can see by looking at the following graph that the clustering result is mixed. We can see that the points are consistent with the clustering, but the  clusters do not appear clearly separated on the graph. This could also be due to the fact that t-SNE does not use the same methods as K-Means for clustering and this visualization is just an indication of the results.
 
-{% include tsne_features.html %}
+ <! --{% include tsne_features.html %}--> 
 
 The next big question, our initial interrogation, is the distribution of clusters across time. For this we plotted the clusters in violin pots, with respect to the time of the civil war onset.
 
@@ -153,7 +153,7 @@ After performing our random search and found good candidates for our models, we 
 
 Surprisingly, despite the low amount of data, the Random Forest model performs well. However, similarly to what was mentioned above, the MLP seems to be performing much worse than the Random Forest. Still, the model is better than chance. It is probable that the very low amount of data and the high class imbalance is causing these results. Let us take a look at the MLP and plot the activations to better understand what is happening:
 
-{% include tsne_end.html %}
+ <! --{% include tsne_end.html %} --> 
 
 We see that for the trained MLP, the activations cluster well compared to the controls. However, we can see that the datapoints still overlap, causing the performance of the model to decrease. Even if the MLP managed to extract a nonlinear mapping from the data, it might be that the amount of data was too scarce for the MLP to make that mapping more robust.
 
